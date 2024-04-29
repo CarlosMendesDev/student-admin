@@ -50,6 +50,7 @@
           v-model="studentForm.cpf"
           :disabled="!create"
           maxlength="11"
+          @input="filterNumbers"
         />
 
         <small class="text-caption text-medium-emphasis">*Campos obrigatórios</small>
@@ -114,6 +115,10 @@ export default {
   }),
 
   methods: {
+    filterNumbers() {
+      this.studentForm.cpf = this.studentForm.cpf.replace(/\D/g, '');
+    },
+
     save () {
       if (this.create) return this.createStudent()
 
