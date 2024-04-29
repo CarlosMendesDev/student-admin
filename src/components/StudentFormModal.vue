@@ -24,7 +24,7 @@
     </template>
 
     <v-card
-      title="Cadastrar aluno"
+      :title="`${create ? 'Cadastrar' : 'Editar'} aluno`"
       class="pa-2"
     >
       <v-card-text class="mt-2">
@@ -42,11 +42,13 @@
           label="RA*"
           variant="outlined"
           v-model="studentForm.ra"
+          :disabled="!create"
         />
         <v-text-field
           label="CPF*"
           variant="outlined"
           v-model="studentForm.cpf"
+          :disabled="!create"
         />
 
         <small class="text-caption text-medium-emphasis">*Campos obrigatórios</small>
