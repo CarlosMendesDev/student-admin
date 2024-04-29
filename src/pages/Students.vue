@@ -79,7 +79,7 @@ import DeleteStudentModal from '../components/DeleteStudentModal.vue'
 
           this.items = data
         } catch (error) {
-          console.log(error)
+          if (error.response.status === 401) return this.$router.push({ name: 'login' })
         }
       },
 

@@ -50,9 +50,8 @@ export default {
         })
 
         localStorage.setItem('accessToken', data.accessToken)
-        localStorage.setItem('username', data.username)
 
-        this.$router.push({ name: 'Alunos' })
+        this.$router.push({ name: 'students' })
       } catch (error) {
         console.error('Erro ao efetuar login:', error)
       }

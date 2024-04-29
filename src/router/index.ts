@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { jwtDecode } from 'jwt-decode'
 import Login from '../pages/Login.vue'
 import Students from '../pages/Students.vue'
 
@@ -11,13 +12,13 @@ const router = createRouter({
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login,
       meta: { requiresAuth: false }
     },
     {
       path: '/alunos',
-      name: 'Alunos',
+      name: 'students',
       component: Students,
       meta: { requiresAuth: true }
     }
@@ -34,9 +35,20 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-// TO DO
 const userIsAuthenticated = () => {
-  return 2 > 1
+  const token = localStorage.getItem('accessToken')
+
+  if (!token || !token.length) return false
+
+  const decodedToken = jwtDecode(token)
+
+  const currentTime = Date.now() / 1000
+
+  if (!decodedToken || !decodedToken.exp) return false
+
+  if (decodedToken.exp < currentTime) return false
+
+  return true
 }
 
 export default router

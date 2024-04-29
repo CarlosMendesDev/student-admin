@@ -2,12 +2,16 @@
   <v-app>
     <v-layout>
       <v-app-bar
-        v-if="this.$route.name !== 'Login'"
+        v-if="this.$route.name !== 'login'"
         color="primary"
         prominent
         :elevation="0"
       >
         <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"/>
+        <v-spacer/>
+        <v-btn @click="logout" append-icon="mdi-logout" class="text-none">
+          Sair
+        </v-btn>
       </v-app-bar>
 
       <v-navigation-drawer
@@ -15,7 +19,7 @@
         :location="$vuetify.display.mobile ? 'bottom' : undefined"
         elevation-1
         class="bg-blue-lighten-5"
-        v-if="this.$route.name !== 'Login'"
+        v-if="this.$route.name !== 'login'"
       >
       <v-list density="compact">
         <v-list-item
@@ -55,6 +59,14 @@
         }
       ],
     }),
+
+    methods: {
+      logout () {
+        localStorage.setItem('accessToken', '')
+
+        this.$router.push({ name: 'login' })
+      }
+    },
 
     watch: {
       group () {
