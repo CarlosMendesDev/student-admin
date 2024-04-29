@@ -1,3 +1,4 @@
+
 # student-admin
 
 A aplicação frontend é uma interface intuitiva para gerenciar matrículas de alunos em turmas online. Ela possibilita visualizar, cadastrar, editar e excluir alunos de maneira eficiente. Com uma interface amigável, o usuário pode interagir facilmente com as funcionalidades oferecidas, proporcionando uma experiência agradável e produtiva.
@@ -20,32 +21,6 @@ Definição de UI/UX: Investiria na definição de uma interface de usuário (UI
 
 Validação elaborada dos inputs: Implementaria uma validação mais elaborada dos inputs para garantir que os dados inseridos pelo usuário atendam aos requisitos esperados e que a aplicação funcione de forma adequada em diferentes cenários.
 Feedbacks melhores de loading, sucesso e erro: Aprimoraria os feedbacks visuais para fornecer informações mais claras ao usuário, incluindo indicadores de carregamento, mensagens de sucesso e mensagens de erro, de modo a melhorar a experiência de uso da aplicação.
-## Rodando localmente
-
-Clone o projeto
-
-```bash
-  git clone git@github.com:CarlosMendesDev/student-admin.git
-```
-
-Entre no diretório do projeto
-
-```bash
-  cd student-admin
-```
-
-Instale as dependências
-
-```bash
-  yarn
-```
-
-Inicie o servidor
-
-```bash
-  yarn dev
-```
-
 
 ## Bibliotecas de terceiros
 
