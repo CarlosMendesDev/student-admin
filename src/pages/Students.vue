@@ -17,7 +17,10 @@
       <student-form-modal create @saveStudent="fetchStudents"/>
     </div>
 
-    <v-data-table :headers="headers" :items="items">
+    <div v-if="!items.length">
+      Nenhum aluno cadastrado no momento.
+    </div>
+    <v-data-table v-else :headers="headers" :items="items" fixed-header>
       <template v-slot:item.actions="{ item }">
         <div class="d-flex ga-4">
           <student-form-modal class="me-2" :student="item" @saveStudent="fetchStudents"/>

@@ -49,6 +49,7 @@
           variant="outlined"
           v-model="studentForm.cpf"
           :disabled="!create"
+          maxlength="11"
         />
 
         <small class="text-caption text-medium-emphasis">*Campos obrigatórios</small>
@@ -63,13 +64,14 @@
           text="Cancelar"
           variant="outlined"
           class="text-none"
-          @click="dialog = false"
+          @click="cancel"
         />
 
         <v-btn
           text="Salvar"
           class="bg-blue-darken-3 text-none"
           variant="outlined"
+          :disabled="!isValidForm()"
           @click="save"
         />
       </v-card-actions>
@@ -117,6 +119,16 @@ export default {
 
       this.updateStudent()
     },
+    cancel () {
+      this.studentForm = {
+        name: '',
+        email: '',
+        ra: '',
+        cpf: ''
+      }
+
+      this.dialog = false
+    },
     async createStudent () {
       try {
         await api.post('/student', this.studentForm)
@@ -146,6 +158,11 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    isValidForm () {
+      if (!this.studentForm.cpf.length || !this.studentForm.email.length || !this.studentForm.name.length || !this.studentForm.ra.length) return false
+
+      return true
     }
   },
 
