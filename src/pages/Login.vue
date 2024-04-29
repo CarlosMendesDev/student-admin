@@ -4,6 +4,7 @@
       <div class="text-subtitle-1 text-medium-emphasis">Usuário</div>
 
       <v-text-field
+        v-model="username"
         density="compact"
         placeholder="Usuário da conta"
         prepend-inner-icon="mdi-account-outline"
@@ -13,6 +14,7 @@
       <div class="text-subtitle-1 text-medium-emphasis">Senha</div>
 
       <v-text-field
+        v-model="password"
         :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
         :type="visible ? 'text' : 'password'"
         density="compact"
@@ -22,7 +24,7 @@
         @click:append-inner="visible = !visible"
       />
 
-      <v-btn block class="bg-blue-darken-3 text-none" variant="flat">
+      <v-btn @click="login" block class="bg-blue-darken-3 text-none" variant="flat">
         Entrar
       </v-btn>
     </v-card>
@@ -30,9 +32,31 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data: () => ({
     visible: false,
+    username: '',
+    password: ''
   }),
+
+  methods: {
+    async login() {
+      try {
+        const { data } = await axios.post('http://localhost:3001/login', {
+          username: this.username,
+          password: this.password
+        })
+
+        localStorage.setItem('accessToken', data.accessToken)
+        localStorage.setItem('username', data.username)
+
+        this.$router.push({ name: 'Alunos' })
+      } catch (error) {
+        console.error('Erro ao efetuar login:', error)
+      }
+    }
+  }
 }
 </script>

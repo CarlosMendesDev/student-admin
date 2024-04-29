@@ -7,8 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    DeleteStudentModal: typeof import('./src/components/DeleteStudentModal.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StudentFormModal: typeof import('./src/components/StudentFormModal.vue')['default']
   }
 }

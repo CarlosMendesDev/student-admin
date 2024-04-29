@@ -36,7 +36,7 @@ router.beforeEach((to, from, next) => {
 
 // TO DO
 const userIsAuthenticated = () => {
-  return 2 < 1
+  return 2 > 1
 }
 
 export default router
